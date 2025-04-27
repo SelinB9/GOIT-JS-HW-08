@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--basicLightbox kütüphanesini ekledik.-->
+    <link href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js" defer></script>
+
+    <!--js dosyaları-->
+    <!--deferi eklemeden body nin arasına html kodlarını yazıp kod sonuna da src ekleyebilirsin sonra /body yi kapatırsın.-->
+    <script src="./js/gallery.js" defer></script> 
+    <link rel="stylesheet" href="css/style.css">
+   
+    
+</head>
+ <body>
+    <!--galeri düzeni için-->
+    <!--Bu bir HTML liste öğesi. ul (unordered list) yani sırasız liste demek.Burada galeri öğelerini (resimleri) listelemek için kullanılıyor.class="gallery" ile CSS veya JavaScript’te bu öğeye kolay erişim sağlanıyor.-->
+    <div class="gallery>"></div>
+    <ul class="gallery"></ul>
+
+
+</body>
+</html>
+
+
+
+
+
+
+<!--PROJE VE AMACI
+Bir görsel galerisi oluşturmak  ve basicLightbox adlı bir JavaScript kütüphanesini kullanmak. 
+Sayfa, küçük bir görsele tıklanıldığında büyük haliyle bir lightbox (ışık kutusu) penceresinde açılmasını (madal açma) amaçlıyor.-->
+
+
+<!--PROJEYİ KODLAMA SIRASI
+1)index.html ve galery.js dosyası oluşturdum. 
+2)kütüphanedeki css ve js bağlantılarını(onlıne) ve kendi js dosyasımı ekledim.7-12
+3)ul yani sırasız liste oluşturdum galeri için li leri js den alıcak.18
+
+4)gallery.js dosyasına geçtim images adında array oluşturdum içine nesnelerin(görsellerin) özelliklerini ekledim preview,orijinal,description 6-70
+5)querySelector olayını kodladım container ismiyle,innerHTML olayını kodladım,createMarkup fonksiyonu oluşturdum.li oluşturduk72-87
+6)add event listener ile click özelliği ekledil ,lightbox açtık(bir galeri öğesine tıkladığınızda bağlı kütüphanenin modal penceresi açmaya yarar.)100-117
+
+7)inde.html dosyasına stil ekledik css ile
+8)Escape tuşuna bastıktan sonra modal pencereyi kapatma işlevini ekledik -->
+
+
+<!--PROJEYE EKSTRA EKLENEN ÖZELLİKLER
+css ile stil oluşturduk 3*3 olarak sıralansın diye galeri
+Escape tuşuna bastıktan sonra modal pencereyi kapatma işlevini ekleyin-->
+
+
+<!--! not! basicLightbox görüntü üzerine yapılmış bir frameworktür o nedenle kendi içinde css dosyasını barındırır.-->
+

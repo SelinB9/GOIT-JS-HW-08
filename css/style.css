@@ -1,0 +1,7 @@
+.gallery{
+    display: grid;
+        grid-template-columns: repeat(3, 510px);
+      grid-gap: 10px;
+      justify-content: center;
+    list-style-type:none; /*resimlerin sol altındaki siyah yuvarlakları kaldırdım*/
+}
