@@ -96,32 +96,44 @@ li class="gallery-item">  <!--Liste öğesidir. Her bir görseli temsil eder. ga
 
 //!şimdi add event listener ile click özelliği eklicez eklemezsek tıklayınca ayrı bir sekmede açar resmi
 // Lightbox açma fonksiyonu(modal açma)
-let instance;//globalde instance tanımladım
+
+let instance;
+
 container.addEventListener('click', handlerImagesClick);
 function handlerImagesClick(evt) {
-  if (evt.target === evt.currentTarget) { //ekranda resmin üzerine değil herhangi bi yere tıklanması denk olma durumu,// Galeri dışında bir yere tıklanırsa işlem yapma
+  
+  //if (evt.target === evt.currentTarget) { //ekranda resmin üzerine değil herhangi bi yere tıklanması denk olma durumu,// Galeri dışında bir yere tıklanırsa işlem yapma
+  if (!evt.target.classList.contains('gallery-image')) {// Tıklanan öğe bir resim değilse, hiçbir işlem yapma
+    console.log("resim dışı bi yere tıklandı");
     return;
   }
-  const clickedImg = evt.target.closest('img');//evt.target tıklanan öğeyi döndürür doğrudan img yi alabilirsin.Eğer tıklanan öğe bir <img> elementiyse çalışsın
+  console.log("resime tıklandı");
 
+  const clickedImg = evt.target.closest('.gallery-image');//evt.target tıklanan öğeyi döndürür doğrudan img yi alabilirsin.Eğer tıklanan öğe bir <img> elementiyse çalışsın
+  
   const largeImageSrc = clickedImg.dataset.source;//resmin ilgili objesini(büyük resim) bulmak için data-source kullanıcaz.  // Küçük resimden, data-source ile büyük resmi aldık.
   const description = clickedImg.alt;
+  
   //lightbox açalım
-   instance = basicLightBox.create(`
+  instance = basicLightBox.create(`
     <div class="modal">
     <img src="${largeImageSrc}" alt="${description}">
   <p>${description}</p>
   </div>
   `);
-  instance.show(); 
+  instance.show();
+
   document.addEventListener('keydown', handlerImagesKeydown);
 }
-function handlerImagesKeydown(evt) {
-  if (evt.key === 'Escape' && instance.close) {
-    instance.close();
-    document.removeEventListener('keydown', handlerImagesKeydown);
+  function handlerImagesKeydown(event) {
+    if (event.key === "Escape" && instance && instance.close) {
+      console.log("esc basıldı" , event.key);
+      instance.close();
+      document.removeEventListener('keydown', handlerImagesKeydown);
+  
+    }
   }
-}
+
 
  
 
@@ -138,4 +150,6 @@ Bir şeyin (bir sınıfın, bir yapı kalıbının) çalışan bir kopyasıdır.
 
 
 //! esc tuşu çalışmama hatası aldım
-//!const largeImageSrc = clickedImg.data.source;(107) bu satırda hata data.sourche diye bir özellik yok dataset.sourche diye var.esc tuşu çalışmıyor çünkü büyük resmi düzgün alamıyor.
+//! 105.-106. satır =if (evt.target === evt.currentTarget) kontrolü, yalnızca tıklamanın doğrudan .gallery öğesinin kendisine olup olmadığını kontrol eder.
+// ! Oysa bizim ilgilendiğimiz durum, gerçekten bir <img> öğesine tıklanıp tıklanmadığıdır.Galerideki görseller img.gallery-image sınıfıyla işaretlenmiş durumda.
+//! Bu nedenle en iyi kontrol=if (!evt.target.classList.contains('gallery-image')) {return;
