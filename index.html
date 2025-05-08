@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!--basicLightbox kütüphanesini ekledik.-->
-    <link href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js" defer></script>
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"></script>
+
 
     <!--js dosyaları-->
     <!--deferi eklemeden body nin arasına html kodlarını yazıp kod sonuna da src ekleyebilirsin sonra /body yi kapatırsın.-->
     
     <link rel="stylesheet" href="css/style.css">
+    <script src="./js/gallery.js" defer></script>
    
     
 </head>
@@ -19,10 +22,10 @@
  <body>
     <!--galeri düzeni için-->
     <!--Bu bir HTML liste öğesi. ul (unordered list) yani sırasız liste demek.Burada galeri öğelerini (resimleri) listelemek için kullanılıyor.class="gallery" ile CSS veya JavaScript’te bu öğeye kolay erişim sağlanıyor.-->
-    <div class="gallery"></div>
-    <ul class="gallery"></ul>
+    <div id="container" class="gallery"></div>
+    
 
-<script src="./js/gallery.js" ></script>
+
 </body>
 </html>
 

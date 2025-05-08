@@ -101,24 +101,26 @@ let instance;
 
 container.addEventListener('click', handlerImagesClick);
 function handlerImagesClick(evt) {
+ 
   
   //if (evt.target === evt.currentTarget) { //ekranda resmin üzerine değil herhangi bi yere tıklanması denk olma durumu,// Galeri dışında bir yere tıklanırsa işlem yapma
   if (!evt.target.classList.contains('gallery-image')) {// Tıklanan öğe bir resim değilse, hiçbir işlem yapma
     console.log("resim dışı bi yere tıklandı");
     return;
   }
+  evt.preventDefault();
   console.log("resime tıklandı");
 
   const clickedImg = evt.target.closest('.gallery-image');//evt.target tıklanan öğeyi döndürür doğrudan img yi alabilirsin.Eğer tıklanan öğe bir <img> elementiyse çalışsın
-  
+
   const largeImageSrc = clickedImg.dataset.source;//resmin ilgili objesini(büyük resim) bulmak için data-source kullanıcaz.  // Küçük resimden, data-source ile büyük resmi aldık.
-  const description = clickedImg.alt;
+  
   
   //lightbox açalım
-  instance = basicLightBox.create(`
+  instance = basicLightbox.create(`
     <div class="modal">
-    <img src="${largeImageSrc}" alt="${description}">
-  <p>${description}</p>
+    <img src="${largeImageSrc}" alt="">
+  
   </div>
   `);
   instance.show();
@@ -126,15 +128,42 @@ function handlerImagesClick(evt) {
   document.addEventListener('keydown', handlerImagesKeydown);
 }
   function handlerImagesKeydown(event) {
-    if (event.key === "Escape" && instance && instance.close) {
+    if (event.key == "Escape" && instance && instance.close) {
       console.log("esc basıldı" , event.key);
       instance.close();
       document.removeEventListener('keydown', handlerImagesKeydown);
   
     }
+}
+  
+
+
+/*let instance;
+
+container.addEventListener('click', handlerImagesClick);
+function handlerImagesClick(evt) {
+ 
+    const clickedImg = evt.target.closest('.gallery-image');//evt.target tıklanan öğeyi döndürür doğrudan img yi alabilirsin.Eğer tıklanan öğe bir <img> elementiyse çalışsın
+    if (!clickedImg) {
+    console.log("resim dışı bir yere tıklandı");
+    return;
   }
+  evt.preventDefault();
+  
+  const largeImageSrc = clickedImg.dataset.source;//resmin ilgili objesini(büyük resim) bulmak için data-source kullanıcaz.  // Küçük resimden, data-source ile büyük resmi aldık.
+  
+  
+  //lightbox açalım
+  instance = basicLightbox.create(`
+    <div class="modal">
+    <img src="${largeImageSrc}" alt="">
+  
+  </div>
+  `);
+  instance.show();
 
-
+  document.addEventListener('keydown', handlerImagesKeydown);
+}
  
 
 
